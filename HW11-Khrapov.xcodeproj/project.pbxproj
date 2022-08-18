@@ -13,6 +13,7 @@
 		3A83C90128AE8EAB005CCCD9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A83C8FF28AE8EAB005CCCD9 /* Main.storyboard */; };
 		3A83C90328AE8EB0005CCCD9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A83C90228AE8EB0005CCCD9 /* Assets.xcassets */; };
 		3A83C90628AE8EB0005CCCD9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A83C90428AE8EB0005CCCD9 /* LaunchScreen.storyboard */; };
+		3A83C90F28AE9037005CCCD9 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3A83C90E28AE9037005CCCD9 /* SnapKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A83C90F28AE9037005CCCD9 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +85,9 @@
 			dependencies = (
 			);
 			name = "HW11-Khrapov";
+			packageProductDependencies = (
+				3A83C90E28AE9037005CCCD9 /* SnapKit */,
+			);
 			productName = "HW11-Khrapov";
 			productReference = 3A83C8F628AE8EAB005CCCD9 /* HW11-Khrapov.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +116,9 @@
 				Base,
 			);
 			mainGroup = 3A83C8ED28AE8EAB005CCCD9;
+			packageReferences = (
+				3A83C90D28AE9037005CCCD9 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = 3A83C8F728AE8EAB005CCCD9 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -358,6 +366,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		3A83C90D28AE9037005CCCD9 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				branch = develop;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3A83C90E28AE9037005CCCD9 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3A83C90D28AE9037005CCCD9 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3A83C8EE28AE8EAB005CCCD9 /* Project object */;
 }
