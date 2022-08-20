@@ -74,7 +74,7 @@ class ViewController: UIViewController {
     
     private lazy var loginButton: UIButton = {
         let loginButton = UIButton(type: .system)
-        loginButton.backgroundColor = .systemBlue
+        loginButton.backgroundColor = UIColor(named: "logButtonColor")
         loginButton.setTitle("Login", for: .normal)
         loginButton.setTitleColor(.white, for: .normal)
         loginButton.titleLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 17)
@@ -95,9 +95,103 @@ class ViewController: UIViewController {
         let forgotPassButton = UIButton(type: .system)
         forgotPassButton.setTitle("Forgot your password?", for: .normal)
         forgotPassButton.setTitleColor(.white, for: .normal)
-        forgotPassButton.titleLabel?.font = UIFont(name: "HelveticaNeue", size: 15)
-        
+        forgotPassButton.titleLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 13)
         return forgotPassButton
+    }()
+    
+    private lazy var connectWithLabel: UILabel = {
+        let label = UILabel()
+        label.text = "or connect with"
+        label.textColor = .lightGray
+        label.font = UIFont(name: "HelveticaNeue-Bold", size: 13)
+        label.textAlignment = .center
+        label.backgroundColor = .white
+        return label
+    }()
+    
+    private lazy var band: UIView = {
+        let band = UIView()
+        band.backgroundColor = .lightGray
+        band.alpha = 0.4
+        return band
+    }()
+    
+    private lazy var logWithFBButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.backgroundColor =  UIColor(named: "logWithFBColor")
+        button.setTitle("Facebook", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 13)
+        button.layer.cornerRadius = 20
+
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOpacity = 0.3
+        button.layer.shadowOffset = .zero
+        button.layer.shadowRadius = 10
+        button.layer.shouldRasterize = true
+        button.layer.rasterizationScale = UIScreen.main.scale
+        
+        
+        if let icon = UIImage(named: "facebook") {
+            button.setLeftIcon(icon)
+        }
+        
+        return button
+    }()
+    
+    private lazy var logWithTwButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.backgroundColor =  UIColor(named: "logWithTwColor")
+        button.setTitle("Twitter", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 13)
+        button.layer.cornerRadius = 20
+
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOpacity = 0.3
+        button.layer.shadowOffset = .zero
+        button.layer.shadowRadius = 10
+        button.layer.shouldRasterize = true
+        button.layer.rasterizationScale = UIScreen.main.scale
+        
+        if let icon = UIImage(named: "twitter") {
+            button.setLeftIcon(icon)
+        }
+        
+        return button
+    }()
+    
+    private lazy var stackSocial: UIStackView = {
+        let stack = UIStackView(arrangedSubviews: [logWithFBButton, logWithTwButton])
+        stack.axis = .horizontal
+        stack.distribution = .fillEqually
+        stack.spacing = 10
+        return stack
+    }()
+    
+    private lazy var labelDontHaveAcc: UILabel = {
+        let label = UILabel()
+        label.text = "Don't have account?"
+        label.textColor = .lightGray
+        label.font = UIFont(name: "HelveticaNeue-Bold", size: 13)
+        label.textAlignment = .center
+        return label
+    }()
+    
+    private lazy var signUpButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Sign up", for: .normal)
+        button.setTitleColor(UIColor(named: "logButtonColor"), for: .normal)
+        button.titleLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 13)
+        return button
+    }()
+    
+    private lazy var bottomStack: UIStackView = {
+        let stack = UIStackView(arrangedSubviews: [labelDontHaveAcc, signUpButton])
+        stack.axis = .horizontal
+//        stack.distribution = .fillEqually
+        stack.spacing = 10
+        return stack
     }()
     
     override func viewDidLoad() {
@@ -123,6 +217,10 @@ class ViewController: UIViewController {
         view.addSubview(passwordField)
         view.addSubview(loginButton)
         view.addSubview(forgotPassButton)
+        view.addSubview(band)
+        view.addSubview(connectWithLabel)
+        view.addSubview(stackSocial)
+        view.addSubview(bottomStack)
     }
     
     private func setupLayout() {
@@ -130,8 +228,6 @@ class ViewController: UIViewController {
             make.centerX.equalTo(view.snp.centerX)
             make.height.equalTo(view)
             make.top.equalTo(view).offset(-100)
-//            make.bottom.equalTo(view).offset(50)
-//            make.width.equalTo(view.snp.width)
         }
         
         topLabel.snp.makeConstraints { make in
@@ -140,7 +236,6 @@ class ViewController: UIViewController {
         }
         
         loginField.snp.makeConstraints { make in
-//            make.centerX.equalTo(view)
             make.top.equalTo(topLabel.snp.bottom).offset(40)
             make.left.equalTo(view).offset(50)
             make.right.equalTo(view).inset(50)
@@ -148,7 +243,6 @@ class ViewController: UIViewController {
         }
         
         passwordField.snp.makeConstraints { make in
-//            make.centerX.equalTo(view)
             make.top.equalTo(loginField.snp.bottom).offset(20)
             make.left.equalTo(view).offset(50)
             make.right.equalTo(view).inset(50)
@@ -156,7 +250,6 @@ class ViewController: UIViewController {
         }
         
         loginButton.snp.makeConstraints { make in
-//            make.centerX.equalTo(view)
             make.top.equalTo(passwordField.snp.bottom).offset(50)
             make.left.equalTo(view).offset(50)
             make.right.equalTo(view).inset(50)
@@ -166,6 +259,31 @@ class ViewController: UIViewController {
         forgotPassButton.snp.makeConstraints { make in
             make.centerX.equalTo(view)
             make.top.equalTo(loginButton.snp.bottom).offset(20)
+        }
+        
+        band.snp.makeConstraints { make in
+            make.height.equalTo(1)
+            make.bottom.equalTo(view).offset(-160)
+            make.left.equalTo(view).offset(50)
+            make.right.equalTo(view).inset(50)
+        }
+        
+        connectWithLabel.snp.makeConstraints { make in
+            make.left.equalTo(band).offset(95)
+            make.right.equalTo(band).offset(-95)
+            make.centerY.equalTo(band).offset(-2)
+        }
+        
+        stackSocial.snp.makeConstraints { make in
+            make.bottom.equalTo(view).offset(-80)
+            make.left.equalTo(view).offset(30)
+            make.right.equalTo(view).offset(-30)
+            make.height.equalTo(40)
+        }
+        
+        bottomStack.snp.makeConstraints { make in
+            make.bottom.equalTo(view).offset(-30)
+            make.centerX.equalTo(view)
         }
     }
     
@@ -200,7 +318,7 @@ extension UITextField {
 
 extension UIButton {
     func setLeftIcon(_ image: UIImage) {
-        let iconView = UIImageView(frame: CGRect(x: 30, y: 16, width: 18, height: 18))
+        let iconView = UIImageView(frame: CGRect(x: 20, y: 9, width: 22, height: 22))
         iconView.image = image
         let iconContainerView: UIView = UIView()
         iconContainerView.addSubview(iconView)
