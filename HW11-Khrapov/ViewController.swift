@@ -9,7 +9,8 @@ import UIKit
 import SnapKit
 
 class ViewController: UIViewController {
-    // MARK: - Outlets
+    
+    // MARK: - Elements
     
     private lazy var background: UIImageView = {
         let image = UIImage(named: "background")
@@ -189,7 +190,6 @@ class ViewController: UIViewController {
     private lazy var bottomStack: UIStackView = {
         let stack = UIStackView(arrangedSubviews: [labelDontHaveAcc, signUpButton])
         stack.axis = .horizontal
-//        stack.distribution = .fillEqually
         stack.spacing = 10
         return stack
     }()
@@ -200,9 +200,6 @@ class ViewController: UIViewController {
         setupHierarchy()
         setupLayout()
     }
-    
-    // MARK: - Lifecycle
-    
     
     // MARK: - Setup
     
@@ -288,10 +285,10 @@ class ViewController: UIViewController {
     }
     
     // MARK: - Actions
+    
     @objc private func loginBtnPressed() {
         
     }
-    
 }
 
 extension UITextField {
@@ -313,8 +310,6 @@ extension UITextField {
         rightViewMode = .always
     }
 }
-
-
 
 extension UIButton {
     func setLeftIcon(_ image: UIImage) {
